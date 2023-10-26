@@ -1,0 +1,17 @@
+current plan is to use Postgres unless there's a more suitable alternative
+
+proposed table columns
+{
+Department;		<-- ex. "CSC"
+Class Code;		<-- ex. "436"
+Class Name;		<-- ex. "Software Development" (That is the name of 436, right?)
+Prof. Name;		<-- ex. "R. Sethi"
+
+Schedule; 		<-- data structure that stores day and hour of each class session for detecting conflicts
+Prerequisites;		<-- set of class codes that are required to take this class
+
+Current attendance;
+Maximum capacity;
+Remaining capacity;	<-- (max - cur)
+isOpen;			<-- (remaining > 0) #can ppl be added even if the class is closed? what would that return?
+}
