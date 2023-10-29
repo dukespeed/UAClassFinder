@@ -25,14 +25,17 @@
     <main>
         <section class="search">
             <h2>Search Classes</h2>
-            <form id="search-class-form">
-                <input type="text" id="class-search" placeholder="Enter Class Name or Code" required>
+            <form id="search-class-form" method="POST" action="{% url 'index' %}">
+                {% csrf_token %}
+                <input type="text" name="search" placeholder="Enter Class Name or Code" required>
                 <button type="submit">Search</button>
             </form>
         </section>
-        
     </main>
+    
 
-    <script src="script.js"></script>
+    <div>
+        <p>{{class_details}}</p>
+    </div>
 </body>
 </html>
