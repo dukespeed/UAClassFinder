@@ -21,10 +21,10 @@ def filter_cs(cs):
               cur_section = "".join([c for c in line[a:] if c.isnumeric()])
               class_data[cur_section] = dict() #populate with fields as we find them
 
-              while "daysTimes" not in line: 
+              while "daysTimes" not in line: #beginning of section to parse
                   i += 1
                   line = lines[i]
-              while "acadCalendar" not in line:
+              while "acadCalendar" not in line: #end of section to parse
                   idx = line.index(":")
                   k = line[:idx].strip('"')
                   v = line[idx:].strip('"')
@@ -36,11 +36,13 @@ def filter_cs(cs):
       if '"classes":[{"title":' in line: class_name = line[line.rindex(":") + 1:].strip('"')
       i += 1
 
-  out += num_sections + " for " + class_name + ": " + str(class_data.keys()) + "<br>"
+  out += num_sections + " for " + class_name + "<br><br>"
   for section in class_data.keys():
       out += "section: " + section + "<br>"
       for k in class_data[section].keys():
-          out += f"{k}: {class_data[section][k]}" + "<br>"
+        dat = class_data[section][k]
+        out += f"{k}: {dat}" + "<br>"
       out += "<br>"
   print(out)
+  out = out.replace("\n", "<br>")
   return out
