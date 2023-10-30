@@ -2,6 +2,8 @@
 Authors: Duke Speed, Audrey Gagum, Yash Agarwal, Sophie Guinan
 '''
 import requests
+from .input_filter import filter_cs
+
 class_search_url = "https://catsched.studentcenter.arizona.edu/nlx7/psc/pubsaprd//UA_SCHEDULE/HRMS/c/SA_LEARNER_SERVICES.CLASS_SEARCH.GBL"
 select_campus_to_search = {'ICAction':'UA_CLAS_SRCH_WK_SSR_PB_SRCH', 'IF-TargetVerb':'POST'}
 
@@ -23,5 +25,8 @@ def find_class_data(dept, class_num):
         cs120_sessions = s.post(class_search_url,data=search_select_cs)
 
         cs = cs120_sessions.text
+
+        #edit to implement formatting - Sophie
+        cs = filter_cs(cs)
 
         return cs
