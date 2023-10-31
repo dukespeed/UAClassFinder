@@ -16,7 +16,11 @@
                 <ul>
                     <li><a href="#">Home</a></li>
                     <li><a href="#">Add Classes</a></li>
-                    <li><a href="login.html">Login/Signup</a></li>
+                    {% if user.is_authenticated %}
+                    <li><a href="{% url 'logout' %}">Logout</a></li>
+                    {% else %}
+                    <li><a href="{% url 'login' %}">Login/Signup</a></li>
+                    {% endif %}
                 </ul>
             </nav>
         </div>
@@ -37,5 +41,6 @@
     <div>
         <p>{{class_details|safe}}</p>
     </div>
+
 </body>
 </html>

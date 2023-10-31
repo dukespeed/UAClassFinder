@@ -7,6 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Class Notification System</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
@@ -25,16 +26,17 @@
     
     <main>
         <section class="login-box">
-            <h2>Login</h2>
-            <form id="login-form" action="{% url 'login' %}" method="POST">
+            <h2>Register</h2>
+            <form method='POST' action="{% url 'register' %}" id="login-form">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Login</button>
+                {{form.as_p}}
+                <br>
+                <button type="submit">Register</button>
             </form>
-            <p>Don't have an account? <a href="{% url 'register' %}">Sign up here</a>.</p>
         </section>
     </main>
 
+    <script src="script.js"></script>
 </body>
 </html>
+
