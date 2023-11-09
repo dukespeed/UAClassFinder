@@ -28,6 +28,14 @@ def filter_cs(cs):
                   idx = line.index(":")
                   k = line[:idx].strip('"')
                   v = line[idx:].strip('"')
+                  
+                  #put your content filter here.
+                  v:str
+                  c:str
+                  if not (c.isalnum() for c in v):
+                    #if field doesnt conain numbers or letters, use placeholder message
+                    v = "Not found"
+
                   class_data[cur_section][k] = v
                   i += 1
                   line = lines[i]
