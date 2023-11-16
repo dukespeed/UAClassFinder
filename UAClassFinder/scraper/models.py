@@ -3,24 +3,19 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Course(models.Model):
-    course_id = models.CharField(max_length=10)
-    department = models.CharField(max_length=10)
-    class_code = models.CharField(max_length=10)
-    course_name = models.CharField(max_length=100)
-    instructor = models.CharField(max_length=100)
-
-    # section = models.CharField(max_length=10)
-    # days = models.CharField(max_length=10)
-    # time = models.CharField(max_length=10)
-    # location = models.CharField(max_length=100)
-    # status = models.CharField(max_length=10)
-    # seats = models.CharField(max_length=10)
-    # waitlist = models.CharField(max_length=10)
-    # credit = models.IntegerField()
-    # restrictions = models.CharField(max_length=100)
+    section_id = models.CharField(max_length=10)
+    class_name = models.CharField(max_length=20)
+    instructors = models.CharField(max_length=100)
+    days_week = models.CharField(max_length=100)
+    time = models.TimeField()                       # Takes a time, can change to char
+    open_class = models.CharField(max_length=1)     # A Y/N arguement for now
+    start_date = models.DateField()
+    end_date = models.DateField()
+    modularity = models.CharField(max_length=100)
+    last_update = models.DateTimeField()    
 
     def __str__(self):
-        return self.course_id + " " + self.course_name
+        return self.course_id + " " + self.course_name    
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
