@@ -1,4 +1,6 @@
 #Implement HTML to prepare scraper output for display on frontend.
+
+#color code if open/closed?
 def pretty_print(contents: dict) -> str:
   out = "<html>"
   out += """<style>
