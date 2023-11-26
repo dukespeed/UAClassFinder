@@ -70,7 +70,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "UAClassFinder.wsgi.application"
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
@@ -116,3 +115,6 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+#adding this line - sophie
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"

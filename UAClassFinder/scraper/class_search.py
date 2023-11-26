@@ -27,6 +27,6 @@ def find_class_data(dept, class_num):
         cs = cs120_sessions.text
 
         #edit to implement formatting - Sophie
-        cs = filter_cs(cs)
+        cs = filter_cs(cs) #[formatted_str, course_data_dictionary, course_object] (course object likely isnt instantiated properly)
 
-        return cs
+        return cs[0]
