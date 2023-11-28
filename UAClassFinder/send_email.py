@@ -5,6 +5,8 @@ with mail.get_connection() as connection:
     mail.EmailMessage(
         "test",
         "this email was sent automatically. :3",
-        to = ["sophieguinan@arizona.edu"],
+        to = ["sophieguinan@arizona.edu", "dukeospeed@arizona.edu"],
+        from_email = "alert@uaclassfinder.co",
         connection=connection,
-    ).send()
+    ).send(fail_silently=False)
+print("worked?")

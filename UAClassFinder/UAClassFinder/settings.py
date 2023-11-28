@@ -118,3 +118,10 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 #adding this line - sophie
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.porkbun.com"
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "alert@uaclassfinder.co"
+EMAIL_HOST_PASSWORD = "UAccessIsDumb" #<-- plaintext password. Significant security vulnerability.
+EMAIL_USE_TLS = True
+
+
