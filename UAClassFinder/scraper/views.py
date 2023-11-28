@@ -5,6 +5,9 @@ from django.http import HttpResponse
 # Create your views here.
 from scraper.class_search import find_class_data
 from django.contrib.auth.forms import UserCreationForm
+from scraper.models import Course, UserProfile
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 def index(request):
     class_details = None
@@ -17,16 +20,13 @@ def index(request):
 
 
 def login_user(request):
-    print("reached")
     if request.method == 'POST':
-        print("reached2")
         username = request.POST.get('username')
         password = request.POST.get('password')
-        print(username, password)
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect('index')
+            return redirect('dashboard')
     return render(request, 'scraper/login.html')
 
 def logout_user(request):
@@ -47,3 +47,22 @@ def register_user(request):
     else:
         form = UserCreationForm()
     return render(request, 'scraper/register.html', {'form': form})
+
+@login_required
+def dashboard(request):
+    user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+    if request.method == 'POST':
+        class_name = request.POST['class_name']
+        print(class_name)
+        if class_name:
+            try:
+                course = Course.objects.get(class_name=class_name)
+            except Course.DoesNotExist:
+                messages.error(request, f"Class '{class_name}' not found.")
+                return redirect('dashboard')
+
+            user_profile.saved_courses.add(course)
+            messages.success(request, f"Class '{class_name}' added successfully.")
+            return redirect('dashboard')
+                
+    return render(request, 'scraper/dashboard.html', {'subscribed_classes': user_profile.saved_courses.all()})

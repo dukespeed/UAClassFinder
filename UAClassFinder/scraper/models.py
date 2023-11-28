@@ -15,9 +15,13 @@ class Course(models.Model):
     last_update = models.DateTimeField()    
 
     def __str__(self):
+<<<<<<< HEAD
         #was originally 
         #return self.course_id + " " + self.course_name 
         return self.section_id + " " + self.class_name    
+=======
+        return self.class_name    
+>>>>>>> 5baa9ef (Added a Dashboard page for users to add classes from)
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
