@@ -10,13 +10,18 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
 def index(request):
-    class_details = None
+    class_details = ''
     if request.method == 'POST':
         class_data = request.POST['search'].split()
         if len(class_data) >= 2:
             class_details = find_class_data(class_data[0], class_data[1])
             if class_details[0].strip().startswith('for'):
                 class_details = 'No class found'
+                messages.error(request, f"Invalid class name.")
+                return render(request, 'scraper/index.html', {'class_details': ''})
+            return render(request, 'scraper/index.html', {'class_details': class_details[0]})
+        else:
+            messages.error(request, f"Invalid class name. Class name must be in the format 'CS 110'.")
     return render(request, 'scraper/index.html', {'class_details': class_details})
 
 
