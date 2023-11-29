@@ -59,12 +59,18 @@ def dashboard(request):
         class_name = request.POST['class_name']
         print(class_name)
         if class_name:
+            #check if class exists in database
             try:
                 course = Course.objects.get(class_name=class_name)
             except Course.DoesNotExist:
-                messages.error(request, f"Class '{class_name}' not found.")
+                #if not, scrape and add to database
+                try:
+                    find_class_data(class_name.split()[0], class_name.split()[1])
+                except IndexError:
+                    messages.error(request, f"Invalid class name.")
+                    return redirect('dashboard')
                 return redirect('dashboard')
-
+            #add class to user profile
             user_profile.saved_courses.add(course)
             messages.success(request, f"Class '{class_name}' added successfully.")
             return redirect('dashboard')
