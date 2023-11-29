@@ -13,9 +13,10 @@ def index(request):
     class_details = None
     if request.method == 'POST':
         class_data = request.POST['search'].split()
-        class_details = find_class_data(class_data[0], class_data[1])
-        if class_details[0].strip().startswith('for'):
-            class_details = 'No class found'
+        if len(class_data) >= 2:
+            class_details = find_class_data(class_data[0], class_data[1])
+            if class_details[0].strip().startswith('for'):
+                class_details = 'No class found'
     return render(request, 'scraper/index.html', {'class_details': class_details})
 
 
@@ -27,6 +28,9 @@ def login_user(request):
         if user is not None:
             login(request, user)
             return redirect('dashboard')
+        else:
+            messages.error(request, f"Invalid username or password.")
+            return redirect('login')
     return render(request, 'scraper/login.html')
 
 def logout_user(request):

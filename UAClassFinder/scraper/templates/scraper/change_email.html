@@ -9,7 +9,7 @@
         <form method="post" name="change_email_form" class="change-email-form">
             {% csrf_token %}
             <label for="email">New Email:</label>
-            <input type="text" id="email" name="email" required>
+            <input type="text" id="email" name="email" style="border: 1px solid; margin: 10px;" required>
             <button type="submit" class="change-email-button">Change Email</button>
         </form>
         </div>

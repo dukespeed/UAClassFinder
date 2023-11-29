@@ -1,6 +1,6 @@
 
 {% extends "scraper/base.html" %}
-
+{% load static %}
 {% block content %}
 <body>
     <main>
@@ -8,14 +8,14 @@
             <h2>Search Classes</h2>
             <form id="search-class-form" method="POST" action="{% url 'index' %}">
                 {% csrf_token %}
-                <input type="text" name="search" placeholder="Enter Class Name or Code" required>
-                <button type="submit">Search</button>
+                <input type="text" name="search" placeholder="Enter Class Name or Code" style="border: 1px solid;">
+                <button type="submit" style="margin-top: 10px;">Search</button>
             </form>
         </section>
     </main>
     
 
-    <div>
+    <div style="margin-left: 20px;">
         <p>{{class_details|safe}}</p>
     </div>
 

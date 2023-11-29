@@ -8,10 +8,22 @@
     <main>
         <section class="login-box">
             <h2>Login</h2>
+            {% if messages %}
+            <div class="alert-container">
+              <ul class="messages">
+                {% for message in messages %}
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                  {{ message }}
+                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+              </ul>
+            </div>
+            {% endif %}
             <form id="login-form" action="{% url 'login' %}" method="POST">
                 {% csrf_token %}
-                <input type="text" name="username" placeholder="Email" required>
-                <input type="password" name="password" placeholder="Password" required>
+                <input type="text" name="username" placeholder="Email" style="margin: 10px; border: 1px solid;" required>
+                <input type="password" name="password" placeholder="Password" style="margin: 10px; border: 1px solid;" required>
                 <button type="submit">Login</button>
             </form>
             <p>Don't have an account? <a href="{% url 'register' %}">Sign up here</a>.</p>

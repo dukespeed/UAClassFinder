@@ -53,7 +53,9 @@ input, button {
 }
 
 input[type="text"] {
-    width: 100%;
+    width: 30%;
+    border: 1px solid;
+    margin: 10px;
 }
 
 button {
@@ -65,3 +67,4 @@ button {
 button:hover {
     background-color: #850029; /* Darker Cardinal Red on hover */
 }
+
