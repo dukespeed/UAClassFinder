@@ -14,7 +14,7 @@ def index(request):
     if request.method == 'POST':
         class_data = request.POST['search'].split()
         class_details = find_class_data(class_data[0], class_data[1])
-        if class_details.strip().startswith('for'):
+        if class_details[0].strip().startswith('for'):
             class_details = 'No class found'
     return render(request, 'scraper/index.html', {'class_details': class_details})
 
@@ -66,3 +66,17 @@ def dashboard(request):
             return redirect('dashboard')
                 
     return render(request, 'scraper/dashboard.html', {'subscribed_classes': user_profile.saved_courses.all()})
+
+def change_email(request):
+    if request.method == 'POST':
+        new_email = request.POST['email']
+        if new_email:
+            user_profile, created = UserProfile.objects.get_or_create(user=request.user)
+            user_profile.email = new_email
+            user_profile.save()
+            messages.success(request, f"Email changed to '{new_email}' successfully.")
+            return redirect('dashboard')
+        else:
+            messages.error(request, f"Invalid email.")
+            return redirect('dashboard')
+    return render(request, 'scraper/change_email.html')

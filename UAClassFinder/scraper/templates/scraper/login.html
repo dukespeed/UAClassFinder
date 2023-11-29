@@ -1,27 +1,9 @@
-{% load static %}
+{%extends 'scraper/base.html'%}
+{%load static%}
 
-<link rel="stylesheet" href="{% static 'scraper/style.css' %}">
+{%block content%}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Class Notification System</title>
-</head>
 <body>
-    <header>
-        <div class="top-bar">
-            <h1>Class Notification System</h1>
-            <nav>
-                <ul>
-                    <li><a href="{% url 'index' %}">Home</a></li>
-                    <li><a href="add-classes.html">Add Classes</a></li>
-                    <li><a href="#">Login/Signup</a></li>
-                    <!-- Add more links as needed -->
-                </ul>
-            </nav>
-        </div>
-    </header>
     
     <main>
         <section class="login-box">
@@ -37,4 +19,4 @@
     </main>
 
 </body>
-</html>
+{%endblock%}

@@ -1,31 +1,8 @@
-{% load static %}
 
-<link rel="stylesheet" href="{% static 'scraper/style.css' %}">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University of Arizona Class Finder</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+{% extends "scraper/base.html" %}
+
+{% block content %}
 <body>
-    <header>
-        <div class="top-bar">
-            <h1>Class Notification System</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Add Classes</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'dashboard' %}">Dashboard</a></li>
-                    {% else %}
-                    <li><a href="{% url 'login' %}">Login/Signup</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
     <main>
         <section class="search">
             <h2>Search Classes</h2>
@@ -43,4 +20,4 @@
     </div>
 
 </body>
-</html>
+{% endblock %}
