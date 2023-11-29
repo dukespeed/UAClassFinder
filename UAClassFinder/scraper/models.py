@@ -15,11 +15,12 @@ class Course(models.Model):
     last_update = models.DateTimeField()    
 
     def __str__(self):
-        return self.course_id + " " + self.course_name    
+        return self.section_id + " " + self.class_name    
 
 class UserProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     saved_courses = models.ManyToManyField(Course)
+    email = models.EmailField(max_length=254)
     
 
     def __str__(self):

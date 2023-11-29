@@ -1,0 +1,18 @@
+{% extends 'scraper/base.html' %}
+{% load static %}
+{%block content%}
+
+<body>
+    <div class="container">
+        <div class="main-content">
+        <h1>Change Email</h1>
+        <form method="post" name="change_email_form" class="change-email-form">
+            {% csrf_token %}
+            <label for="email">New Email:</label>
+            <input type="text" id="email" name="email" style="border: 1px solid; margin: 10px;" required>
+            <button type="submit" class="change-email-button">Change Email</button>
+        </form>
+        </div>
+    </div>
+</body>
+{% endblock %}

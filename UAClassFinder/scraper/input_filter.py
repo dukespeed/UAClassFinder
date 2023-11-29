@@ -1,7 +1,11 @@
+from scraper.models import Course
+
+
 def filter_cs(cs):
   #quick edit to see what we get from the request - Sophie
 
   out = ""
+  crs_list: list[Course] = []
 
   class_data = dict(dict()) #main body of data passed that will be used to organize inputs into out str
   cur_section = ""
@@ -37,12 +41,27 @@ def filter_cs(cs):
       i += 1
 
   out += num_sections + " for " + class_name + "<br><br>"
+  #class_data["class_name"] = class_name
   for section in class_data.keys():
       out += "section: " + section + "<br>"
       for k in class_data[section].keys():
         dat = class_data[section][k]
-        out += f"{k}: {dat}" + "<br>"
+
+        out += f"{k} {dat}" + "<br>"
       out += "<br>"
+
+      sec = class_data[section]
+    #   crs = Course(
+    #         section_id  = section,
+    #         #class_name  = class_data["class_name"],
+    #         instructors = sec["instructor:"],
+    #         days_week = sec["statEndDate:"],
+    #     ) # does this work?
+    #   crs_list.append(crs)
   print(out)
   out = out.replace("\n", "<br>")
-  return out
+
+
+  return [out, class_data, crs_list]
+
+#ret = [formatted_str, dictionary, course_object]

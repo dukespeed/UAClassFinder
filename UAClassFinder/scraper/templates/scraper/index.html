@@ -1,46 +1,36 @@
-{% load static %}
 
-<link rel="stylesheet" href="{% static 'scraper/style.css' %}">
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>University of Arizona Class Finder</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
+{% extends "scraper/base.html" %}
+{% load static %}
+{% block content %}
 <body>
-    <header>
-        <div class="top-bar">
-            <h1>Class Notification System</h1>
-            <nav>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Add Classes</a></li>
-                    {% if user.is_authenticated %}
-                    <li><a href="{% url 'logout' %}">Logout</a></li>
-                    {% else %}
-                    <li><a href="{% url 'login' %}">Login/Signup</a></li>
-                    {% endif %}
-                </ul>
-            </nav>
-        </div>
-    </header>
-    
     <main>
         <section class="search">
             <h2>Search Classes</h2>
+            {% if messages %}
+        <div class="alert-container">
+          <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+        
             <form id="search-class-form" method="POST" action="{% url 'index' %}">
                 {% csrf_token %}
-                <input type="text" name="search" placeholder="Enter Class Name or Code" required>
-                <button type="submit">Search</button>
+                <input type="text" name="search" placeholder="Enter Class Name or Code" style="border: 1px solid;">
+                <button type="submit" style="margin-top: 10px;">Search</button>
             </form>
         </section>
     </main>
     
 
-    <div>
+    <div style="margin-left: 20px;">
         <p>{{class_details|safe}}</p>
     </div>
 
 </body>
-</html>
+{% endblock %}

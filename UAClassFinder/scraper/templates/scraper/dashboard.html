@@ -1,0 +1,52 @@
+{% extends 'scraper/base.html' %}
+{% load static %}
+{% block content %}
+
+  <body>
+    <div class="container">
+      <div class="main-content" style="text-align: center; padding: 20px;">
+        <h1 >Welcome to your Dashboard</h1>
+
+        {% if messages %}
+        <div class="alert-container">
+          <ul class="messages">
+            {% for message in messages %}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+              {{ message }}
+              <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            {% endfor %}
+          </ul>
+        </div>
+        {% endif %}
+
+        <section class="subscribed-classes">
+          <h2>Your Subscribed Classes</h2>
+          <ul class="list-group">
+            {% for class in subscribed_classes %}
+            <li class="list-group-item">
+              {{ class.class_name }}
+            </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <section class="add-new-class">
+          <h2>Add a New Class</h2>
+          <form method="post" name="subscribe_form" class="subscribe-form">
+            {% csrf_token %}
+            <label for="class_name">Class Name:</label>
+            <input type="text" id="class_name" name="class_name" style="border: 1px solid;"required>
+            <button type="submit" class="subscribe-button" style="margin-top: 20px;">Subscribe</button>
+          </form>
+        </section>
+
+      </div>
+
+    </div>
+  </body>
+  <footer style="text-align: center; margin-top: 30px;">
+    <a href="{% url 'change_email' %}">Change account information</a>
+  </footer>
+
+{% endblock %}
