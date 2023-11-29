@@ -46,7 +46,7 @@ def update_db(string_to_parse):
         test02 = test02 + string_to_parse[i]
         i = i + 1
     #Print for testing
-    print(test02 + " classes avaliable: " + str(len(test01) - 1))
+    #print(test02 + " classes avaliable: " + str(len(test01) - 1))
     #i for looking at each class. Set to 1 because the items at 0 hold no relevant information
     i = 1
 
@@ -76,10 +76,10 @@ def update_db(string_to_parse):
                 section_id = section_id + parse[j]
                 j = j + 1
             j = 0
-        print("section_id: " + section_id)
+        #print("section_id: " + section_id)
 
         #Done above (maybe. TODO Check)
-        print("class_name: " + class_name)
+        #print("class_name: " + class_name)
 
         #Finding instructors TODO Check if works with multiple instructors
         temp = parse.find("instructor\":\"<ul><li>")
@@ -89,7 +89,7 @@ def update_db(string_to_parse):
                 instructors = instructors + parse[j]
                 j = j + 1
             j = 0
-        print("instructors: " + instructors)
+        #print("instructors: " + instructors)
 
         #Finding both days and times
         temp = parse.find("daysTimes\":\"<ul><li>")
@@ -103,8 +103,8 @@ def update_db(string_to_parse):
                 time = time + parse[j]
                 j = j + 1
             j = 0
-        print("days_week: " + days_week)
-        print("time: " + time)
+        #print("days_week: " + days_week)
+        #print("time: " + time)
             
         #Finding status
         temp = parse.find("status\"")
@@ -114,7 +114,7 @@ def update_db(string_to_parse):
                 open_class = open_class + parse[j]
                 j = j + 1
             j = 0
-        print("open_class: " + open_class)
+        #print("open_class: " + open_class)
 
         #Finding start and end times
         temp = parse.find("startEndDate\":\"<ul><li>")
@@ -128,8 +128,8 @@ def update_db(string_to_parse):
                 end_date = end_date + parse[j]
                 j = j + 1
             j = 0
-        print("start_date: " + start_date)
-        print("end_date: " + end_date)
+        #print("start_date: " + start_date)
+        #print("end_date: " + end_date)
 
         #Finding modularity
         temp = parse.find("instructionMode\":\"")
@@ -139,7 +139,7 @@ def update_db(string_to_parse):
                 modularity = modularity + parse[j]
                 j = j + 1
             j = 0
-        print("modularity: " + modularity)
+        #print("modularity: " + modularity)
 
         last_update = datetime.date.today()
 
